@@ -1,0 +1,98 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    padding: 0px;
+    margin:0px;
+}
+.toolbox-cont{
+    height: 5rem;
+    background-color: rgb(71, 105, 116);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 3rem;
+}
+.toolbox-priority-cont{
+    height: 3.5rem;
+    width: 16rem;
+    background-color: rgb(41, 36, 47);
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    margin-right:3rem;
+    border-radius: 5px;
+}
+.action-btn-cont{
+    height: 3.5rem;
+    width: 8rem;
+    background-color: rgb(41, 36, 47);
+    display:flex;
+}
+.action-btn-cont > *{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: lightgrey;
+    font-size: 2rem;
+}
+
+.color{
+    height: 1.5rem;
+    background-color: chocolate;
+    width: 3rem;
+    border-radius: 5px;
+}
+.lightpink{
+    background-color: lightpink;
+}
+.lightgreen{
+    background-color: lightgreen;
+}
+.lightblue{
+    background-color: lightblue;
+}
+.black{
+    background-color: black;
+}
+
+.action-btn-cont > *:hover{
+    background-color: rgb(247, 132, 151);
+}
+
+/* ******** Kisi bhi box/div ko centering karne ke liye use kar sakte h */
+.model-cont{
+    height: 40vh;
+    width: 35vw;
+    background-color: goldenrod;
+    position: absolute;
+    top: calc( ( 100vh - 40vh ) / 2 );
+    left: calc( ( 100vw - 35vw) / 2 );
+    display:flex;
+}
+/* -------------------------------------------- */
+.priority-colors-cont{
+    height: 100%;
+    width: 25%;
+    background-color: rgb(41, 36, 47);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.textarea-cont{
+    height: 100%;
+    width: 75%;
+    border:none;
+    outline:none;
+    background-color: lightblue;
+    resize:none;
+    padding: 2rem;
+    font-size: 1.5rem;
+}
+.priority-color{
+    height: 2rem;
+    width: 3.5rem;
+    border-radius: 5px;
+}
