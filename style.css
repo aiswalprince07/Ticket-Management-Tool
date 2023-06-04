@@ -69,7 +69,7 @@ body{
     position: absolute;
     top: calc( ( 100vh - 40vh ) / 2 );
     left: calc( ( 100vw - 35vw) / 2 );
-    display:flex;
+    display:none;
 }
 /* -------------------------------------------- */
 .priority-colors-cont{
@@ -95,4 +95,34 @@ body{
     height: 2rem;
     width: 3.5rem;
     border-radius: 5px;
+}
+.border{
+    border: 5px solid  rgb(234, 234, 234);
+}
+.ticket-cont{
+    height: 10rem;
+    width: 16rem;
+    background-color: rgb(147, 171, 180);
+}
+.ticket-color{
+    height: 1rem;
+    background-color: lightpink;
+}
+.ticket-id{
+    height: 2rem;
+    background-color: lightgreen;
+    padding:0.4rem;
+}
+.task-area{
+    height: 80%;
+    /* height: calc(100%-3rem); */
+    /* background-color: lightsalmon; */
+    padding:0.4rem;
+}
+.main-cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+    gap:1rem;
 }
