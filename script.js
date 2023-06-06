@@ -5,8 +5,38 @@ let textAreaCont = document.querySelector(".textarea-cont");
 let colors = ["lightpink","lightblue","lightgreen","black"];
 let modelPriorityColor = colors[colors.length-1];
 let allPriorityColors = document.querySelectorAll(".priority-color");
+let removebtn = document.querySelector(".remove-btn");
+let toolBoxColors = document.querySelectorAll(".color");
 
+
+let removeFlag = false;
 let addFlag = false;
+
+let lockClass = "fa-lock";
+let unlockClass = "fa-lock-open";
+
+let ticketsArr=[];
+
+//fliter karne wla function bana rhe !!
+for(let i = 0;i<toolBarColors.length;i++){
+    toolBoxColors[i].addEventListener("click",(e)=>{
+        let currentToolBoxColors = toolBoxColors[i].classList[0];  // ClassList matlab ...class="abc bcd gfg"   ..to isme index[0] = abc, index[1] = bcd  ye hota h !!
+        //ek object bana rhe .. jisme parameter -->  ID,Task,Color_Priority
+
+        let filteredTickets = ticketsArr.filter((ticketObj,idx)=>{
+            return currentToolBoxColors ===ticketObj.ticketColor;
+        })
+
+        //Remove previous tickets
+        let AllTicketCont = document.querySelectorAll(".ticket-cont");
+        for(let i = 0;i<AllTicketCont.length;i++){
+            AllTicketCont[i].remove;
+        }
+
+        //Display new filterd
+    })
+}
+
 
 //Listener for model coloring  (click karne per border change means priority change )
 allPriorityColors.forEach((colorElement,idx)=>{
@@ -32,7 +62,11 @@ addbtn.addEventListener("click",(e)=>{
     }
 
 })
-let removebtn = document.querySelector(".remove-btn");
+
+removebtn.addEventListener("click",(e)=>{
+    removeFlag = !removeFlag;
+})
+
 
 modelCont.addEventListener("keydown",(e)=>{
     let key = e.key;
@@ -62,12 +96,64 @@ function createTicket(ticketColor,ticketID,ticketTask){
             <div class="ticket-id">#${ticketID}</div>
             <div class="task-area">${ticketTask.value}</div>
             <div class="ticket-lock">
-                <i class="fa-solid fa-lock"></i>
+                 <i class="fa-solid fa-lock"></i>
             </div>
         </div>
         `
         ;
     mainCont.appendChild(ticketCont);
+
+    //Create object of ticket and add to array
+    ticketsArr.push({ticketColor,ticketTask,ticketID});
+
+    handleRemoval(ticketCont);
+    handleLock(ticketCont);
+    handleColor(ticketCont);
     
 }
 
+function handleRemoval(ticket){
+    //remove -> if true then remove
+
+    if(removeFlag){
+        ticket.remove();
+    }
+
+}
+
+function handleLock(ticket){
+    let ticketLockELem = ticket.querySelector(".ticket-lock");
+    let ticketLock = ticketLockELem.children[0];
+    let ticketTaskArea = ticket.querySelector(".task-area");
+
+    ticketLock.addEventListener("click",(e)=>{
+        if(ticketLock.classList.contains(lockClass)){
+            ticketLock.classList.remove(lockClass);
+            ticketLock.classList.add(unlockClass);
+            ticketTaskArea.setAttribute("contenteditable","true");
+        }else{
+            //lock kar do ..agar unlock kar do
+            ticketLock.classList.add(lockClass);
+            ticketLock.classList.remove(unlockClass);
+            ticketTaskArea.setAttribute("contenteditable","false");
+        }
+    })
+}
+
+
+
+function handleColor(ticket){
+    let ticketColor = ticket.querySelector(".ticket-color");
+    ticketColor.addEventListener("click",(e)=>{
+        let currTicketColor = ticketColor.classList[1];
+        // get ticket color index
+        let currTicketColorInd = colors.findIndex((color)=>{
+            return currTicketColor === color;
+        }) 
+
+        let newTicketColorInd = (currTicketColorInd+1)%4;
+        let newTicketColor = colors[newTicketColorInd];
+        ticketColor.classList.remove(currTicketColor);
+        ticketColor.classList.add(newTicketColor);
+    })
+}
